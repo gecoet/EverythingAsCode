@@ -15,6 +15,13 @@ stages:
     - script: echo Build
       displayName: 'First step in building the website skeleton'
 
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'Visual Studio Professional with MSDN'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az group create -n "cloudwiseauto-test-rg" -l southafricanorth'
+
 - stage: build_integration
   displayName: 'Build the integration environment resource group'
   dependsOn: build
